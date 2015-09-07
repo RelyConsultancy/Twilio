@@ -1,0 +1,60 @@
+﻿@using Twilio.Web.Controllers
+@{
+    ViewBag.WrapperClass = "answer";
+    ViewBag.Title = "Planning analytics - Westminster.gov.uk";
+    var applicationMessages = ViewBag.ApplicationMessages as List<ApplicationMessage>;
+}
+<section id="content" role="main" class="group">
+    <header class="page-header group">
+        <hgroup>
+            <h1><span>Planning</span> Analytics</h1>
+        </hgroup>
+        <nav class="skip-to-related"><a href="#related">Not what you're looking for? ↓</a></nav>
+    </header>
+    <div class="article-container group">
+        <article role="article" class="group">
+            <div class="inner">
+	       
+                
+                
+                <h2>Application number <span style="color:#666">@ViewBag.PlanningId</span></h2>
+                
+                <table>
+                    <tr>
+                        <td style="background-color:#fff; text-align:center;position:relative;"><img src="~/static/images/planning-analytics/planner.png" /><img style="position:absolute;right:-28px;top:30px;" src="~/static/images/planning-analytics/arrow.png" /></td>
+                        <td style="background-color:#fff; text-align: center;">
+                            <img src="~/static/images/planning-analytics/agent.png" /></td>
+                    </tr>
+                    <tr>
+                        <td>Date/Time</td>
+                        <td>Date/Time</td>
+                    </tr>
+                    @foreach (var applicationMessage in applicationMessages)
+                    {
+                        <tr style="cursor:pointer;" onclick="window.location = '/planning-messages/analytics-message/@ViewBag.PlanningId/@applicationMessages.IndexOf(applicationMessage)';">
+                            <td style="vertical-align:baseline; background-color:#fff;"><span style="color:#cdcdcd; font-size:1.5em; font-weight:bold;">@applicationMessage.MessageRecored.ToString("d MMMM yyyy")</span> @applicationMessage.MessageRecored.ToString("h:mm tt").ToLower()</td>
+                            <td style="vertical-align: baseline; background-color:#fff;"><span style="color:#cdcdcd; font-size:1.5em; font-weight:bold;">@(applicationMessage.MessageListened.HasValue ? applicationMessage.MessageListened.Value.ToString("d MMMM yyyy") : "Not yet listened to")</span> @(applicationMessage.MessageListened.HasValue ? applicationMessage.MessageListened.Value.ToString("H:mm tt").ToLower() : string.Empty)</td>
+                        </tr>
+                        
+                    }
+                    @if (!applicationMessages.Any())
+                    {
+                        <tr>
+                            <td colspan="2" style="background-color:#fff; text-align:center;">There are no messages for this application.</td>
+                        </tr>
+                    }
+
+                </table>
+                
+                <div class="last-updated" style="background-color:#DFE0E2; padding: 0.5em 1em 0.5em 1em;margin: 1em -1em 1.5em -1em;">
+                    <div>Last updated</div>
+                    <div style="color:#fff;font-size:2em;font-weight:bold;">@DateTime.Now.ToString("h:mm tt").ToLower()</div>
+                </div>
+                   
+            </div>
+
+        </article>
+
+    </div>
+
+</section>

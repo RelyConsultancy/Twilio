@@ -1,0 +1,27 @@
+﻿@using Twilio.Web.Controllers
+<?xml version="1.0" encoding="UTF-8"?>
+@{
+    Response.ContentType = "text/xml";
+    Layout = null;
+
+    var applicationMessages = ViewBag.ApplicationMessages as List<ApplicationMessage>;
+}
+<Response>
+    @if (applicationMessages == null || !applicationMessages.Any())
+    {
+        <Play>/static/twilio/no-messages.mp3</Play>
+    }
+    else
+    {
+        <Play>/static/twilio/first-message.mp3</Play>
+        <Play>@applicationMessages.First().RecordingUrl</Play>
+        
+        foreach (var applicationMessage in applicationMessages.Skip(1))
+        {
+            <Play>/static/twilio/next-message.mp3</Play>
+            <Play>@applicationMessage.RecordingUrl</Play>
+        }
+        
+        <Play>/static/twilio/end-of-messages.mp3</Play>
+    }
+</Response>

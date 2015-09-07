@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+@{
+    Response.ContentType = "text/xml";
+    Layout = null;
+}
+<Response>
+    <Play>/static/twilio/thank-you-planner.mp3</Play>
+    <Sms to="+447869412356">A message has been left for your planning application @ViewBag.PlanningId. Please call 020 0333 1009 to retrieve your message.</Sms>
+</Response>

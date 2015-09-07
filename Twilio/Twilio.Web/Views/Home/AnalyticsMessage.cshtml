@@ -1,0 +1,31 @@
+﻿@using Twilio.Web.Controllers
+@{
+    ViewBag.WrapperClass = "answer";
+    ViewBag.Title = "Planning statistics - Westminster.gov.uk";
+    var applicationMessage = ViewBag.ApplicationMessage as ApplicationMessage;
+}
+<section id="content" role="main" class="group">
+    <header class="page-header group">
+        <hgroup>
+            <h1><span>Planning</span> Analytics</h1>
+        </hgroup>
+        <nav class="skip-to-related"><a href="#related">Not what you're looking for? ↓</a></nav>
+    </header>
+    <div class="article-container group">
+        <article role="article" class="group">
+            <div class="inner">
+                <h2>Application number <span style="color:#666">@ViewBag.PlanningId</span></h2>
+                
+                <h3>Message</h3>
+                
+                <p>@applicationMessage.TranscriptionText</p>
+                
+                <p>To listen to the recorded message, <a href="@applicationMessage.RecordingUrl" rel="external" target="_blank">click here</a></p>
+                                   
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
