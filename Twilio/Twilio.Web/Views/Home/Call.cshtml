@@ -8,13 +8,13 @@
 <Response>
     @if (isWestminster)
     {
-        <Gather timeout="10" action="/home/gather-planner" method="POST">
+        <Gather timeout="10" action="/home/gatherplanner" method="POST">
             <Play>/static/twilio/welcome-planner.mp3</Play>
         </Gather>
     }
     else
     {
-        <Gather timeout="10" action="/home/gather-agent" method="POST">
+        <Gather timeout="10" action="/home/gatheragent" method="POST">
             <Play>/static/twilio/welcome-agent.mp3</Play>
         </Gather>
     }
